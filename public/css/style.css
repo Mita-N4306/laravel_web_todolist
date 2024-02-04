@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+.error-message-container{
+margin-top:12px;
+}
+.error-message-container ul{
+list-style:none;
+}
+.success-message-container,
+.login-message-container{
+text-align:center;
+padding:4px;
+border:solid 2px green;
+background-color:lightgreen;
+}
+.top-container-area{
+position:relative;
+background-color:lightgreen;
+margin:40px;
+height:500px;
+border-radius:12px;
+}
+.top-container-area h1{
+position:absolute;
+top:25%;
+left:22%;
+display:inline-block;
+text-align:center;
+background-color: white;
+padding:80px;
+border-radius:12px;
+}
+.search-container{
+text-align:center;
+margin-bottom:12px;
+}
+.post-container{
+text-align:center;
+margin-bottom:12px;
+}
+.form-group{
+margin:40px 0 40px 0;
+display: flex;
+flex-direction: column;
+text-align:left;
+}
