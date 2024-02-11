@@ -13,8 +13,8 @@
    <div class="post-container">
      <h2>投稿新規作成</h2>
      <p>↓↓投稿内容を2000文字以内で入力後、投稿ボタンを押してくださいm(__)m</p>
-      @include('commons.success-message')
-       <form action="{{ rouge('post.store')}}" method="POST" enctype="multipart/form-data">
+      @include('commons.success_message')
+       <form action="{{ route('post.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
          <div class="form-group">
           <label for="title">件名</label>
@@ -40,7 +40,9 @@
    @include('commons.carousel')
     <div class="posts-container">
      @if(Auth::check())
-      <h3>{{$user->name}}さん、こんにちは！</h3>
+      <div class="user-name-container">
+       <h3>{{Auth::user()->name}}さん、こんにちは！</h3>
+      </div>
      @endif
      @if(isset($posts) && count($posts) >0)
       @foreach($posts as $post)
