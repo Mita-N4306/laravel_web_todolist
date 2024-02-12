@@ -4,6 +4,9 @@
     @foreach($errors->all() as $error)
      <li class="ml-4">{{$error}}</li>
     @endforeach
+    @if(empty($errors->first('image')))
+     <li>画像ファイルがある場合、再度選択してください</li>
+    @endif
   </ul>
  </div>
 @endif

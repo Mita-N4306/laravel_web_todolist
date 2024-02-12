@@ -30,8 +30,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $inputs = $request->validate([
+      'title' => 'required|max:255',
+      'body' => 'required|max:2000',
+      'image' => 'image|max:2000',
+      ]);
+      $post = new Post(); //postモデルに準じてpostのインスタンスを作成
+      $post->title = $request->title;
+      $post->body = $request->body;
+      $post->user_id = auth()->user()->id;
+
+      if(request('image')) {  //もし送信されたデータの中にimageがあれば、次の処理を行う↓↓
+        $original = request()->file('image')->getClientOriginalName(); //元々のファイル名を取得し、これを$originalに代入する
+        $name = date('Ymd_His').'_'.$original;  //秒まで表示する日付を表示させ、$nameの名前で画像ファイルを指定した場所に保存する
+        request()->file('image')->move('storage/images',$name);  //$nameの名前で画像ファイルのファイル名をデータベースに保存する
+        $post->image = $name;
+      }
+      $post->save();
+      return redirect()->route('top',$post)->with('message','投稿を送信しました');
     }
+      
 
     /**
      * Display the specified resource.
