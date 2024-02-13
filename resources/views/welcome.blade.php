@@ -46,7 +46,7 @@
      @endif
      @if(isset($posts) && count($posts) >0)
       @foreach($posts as $post)
-       <div class="idex-post-container">
+       <div class="index-post-container">
         <div class="title-container">
           <a href="{{ route('post.show',$post)}}">
             <p>件名:{{$post->title}}</p>
