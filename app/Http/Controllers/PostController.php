@@ -14,7 +14,7 @@ class PostController extends Controller
     {
       $posts = Post::with('user','comments')->orderBy('created_at','desc')->paginate(5);
       $user = auth()->user;
-      return view('welcome',['posts' => $posts,'user' => $user]);
+      return view('welcome',['posts' => $posts,]);
     }
 
     /**
@@ -49,14 +49,19 @@ class PostController extends Controller
       $post->save();
       return redirect()->route('top',$post)->with('message','投稿を送信しました');
     }
-      
+
 
     /**
      * Display the specified resource.
      */
     public function show(Post $post)
     {
-        //
+      return view('post.show',['post'=>$post]);
+    }
+    public function showWelcomePage()
+    {
+     $posts=Post::with('comments')->paginate(5); // ユーザーのコメント一覧を取得（ログイン状態に関係なく）
+     return view('welcome',['posts'=>$posts]);
     }
 
     /**
