@@ -26,7 +26,7 @@
  </a>
  @endif
  @if(Auth::check() && (Auth::id() === $post->user_id || Auth::user()->isAdmin()))
-  <form action="{{ route('post.destroy',$post) }}" method="post">
+  {{-- <form action="{{ route('post.destroy',$post) }}" method="post"> --}}
   @csrf
   @method('delete')
    <div class="edit-button-container">

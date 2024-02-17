@@ -40,7 +40,8 @@ Route::get('post',[PostController::class,'index'])->name('post.index'); //投稿
 Route::get('post/create',[PostController::class,'create'])->name('post.create'); //新規投稿表示
 Route::post('post',[PostController::class,'store'])->name('post.store'); //新規投稿実行
 Route::get('post/{post}',[PostController::class,'show'])->name('post.show'); //投稿個別表示
-Route::get('post/{post}/edit',[PostController::class,'edit'])->name('post.edit'); //投稿の更新
+Route::get('post/{post}/edit',[PostController::class,'edit'])->name('post.edit'); //投稿の更新(編集画面表示)
+Route::put('post/{post}',[PostController::class,'update'])->name('post.update'); //更新を保存
 
 //新規登録
 Route::get('signup',[RegisterController::class,'showRegistrationForm'])->name('signup'); //新規登録表示
