@@ -42,7 +42,7 @@ Route::post('post',[PostController::class,'store'])->name('post.store'); //新�
 Route::get('post/{post}',[PostController::class,'show'])->name('post.show'); //投稿個別表示
 Route::get('post/{post}/edit',[PostController::class,'edit'])->name('post.edit'); //投稿の更新(編集画面表示)
 Route::put('post/{post}',[PostController::class,'update'])->name('post.update'); //更新を保存
-
+Route::delete('post/{post}',[PostController::class,'destroy'])->name('post.destroy'); //投稿の削除
 //新規登録
 Route::get('signup',[RegisterController::class,'showRegistrationForm'])->name('signup'); //新規登録表示
 Route::post('signup',[RegisterController::class,'register'])->name('signup.post'); //新規登録実行
