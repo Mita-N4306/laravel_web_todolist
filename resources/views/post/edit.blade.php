@@ -11,7 +11,7 @@
           <h2>投稿の編集</h2>
           <p>↓↓投稿内容を編集後、更新ボタンを押してください↓↓</p>
         </div>
-          <form action="{{route('post.edit',$post)}}" method="post" enctype="multipart/form-data">
+          <form action="{{route('post.update',$post)}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('put')
              <div class="form-group">
@@ -20,7 +20,7 @@
              </div>
              <div class="form-group">
                <label for="body">本文</label>
-               <textarea name="text" id="body" name="body" cols="30" rows="10" required>{{old('body',$post->body)}}</textarea>
+               <textarea id="body" name="body" cols="30" rows="10" required>{{old('body',$post->body)}}</textarea>
              </div>
              <div class="form-group">
                @if($post->image)
