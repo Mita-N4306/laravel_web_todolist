@@ -1,7 +1,7 @@
 <header>
     <div class="header-container">
       <div class="logo-container">
-       <a href="{{route('top')}}"><img src="{{asset('img/header-logo.png')}}" alt="ヘッダーロゴ画像"></a>
+       <a href="{{route('post.index')}}"><img src="{{asset('img/header-logo.png')}}" alt="ヘッダーロゴ画像"></a>
       </div>
       <div class="menu-container">
        @if(Auth::check())

@@ -65,7 +65,7 @@
             <span>コメントはまだありません</span>
           @endif
           @if(Auth::id())
-           <a href="{{route('post.show'.$post)}}">
+           <a href="{{route('post.show',$post)}}">
             <div class="button-container">
               <button type="submit" class="btn btn-success">コメントする</button>
             </div>
@@ -76,7 +76,7 @@
       @endforeach
       {{ $posts->links("pagination::bootstrap-4") }}
        @else
-        <p>No posts available.</p>
+        <p>投稿がまだありません</p>
      @endif
     </div>
 </div>

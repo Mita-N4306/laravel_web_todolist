@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 /*
@@ -15,7 +16,7 @@ use App\Http\Controllers\Auth\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// Route::get('/',[PostController::class,'index'])->name('post.index'); //トップページ表示
 Route::get('/', function () {
     return view('welcome');
 })->name('top');
@@ -46,7 +47,11 @@ Route::delete('post/{post}',[PostController::class,'destroy'])->name('post.destr
 //新規登録
 Route::get('signup',[RegisterController::class,'showRegistrationForm'])->name('signup'); //新規登録表示
 Route::post('signup',[RegisterController::class,'register'])->name('signup.post'); //新規登録実行
-
+//コメント機能
+Route::post('post/comment/store',[CommentController::class,'store'])->name('comment.store'); //コメントの保存
+Route::get('post/comment/{comment}/edit',[CommentController::class,'edit'])->name('comment.edit'); //コメント編集画面表示
+Route::put('post/comment/{comment}',[CommentController::class,'update'])->name('comment.update'); //コメント更新の保存
+Route::delete('comment/{comment}',[CommentController::class,'destroy'])->name('comment.destroy'); //コメントの削除
 //ログイン・ログアウト
 Route::get('login',[LoginController::class,'showLoginForm'])->name('login'); //ログイン画面表示
 Route::post('login',[LoginController::class,'login'])->name('login.post'); //ログイン実行

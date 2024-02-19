@@ -25,7 +25,7 @@
     </div>
  </a>
  @endif
- @if(Auth::check() && (Auth::id() === $post->user_id || Auth::user()->isAdmin()))
+ @if(Auth::id() === $post->user_id)
   <form action="{{ route('post.destroy',$post) }}" method="post">
   @csrf
   @method('delete')
@@ -36,4 +36,5 @@
   </div>
  @endif
 </div>
+@include('comment.show')
 @endsection

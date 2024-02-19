@@ -25,7 +25,7 @@
              <div class="form-group">
                @if($post->image)
                 <div class="body-container">
-                  <img src="{{asset('storage/images'.$post->image)}}" alt="投稿画像">
+                  <img src="{{asset('storage/images/'.$post->image)}}" alt="投稿画像">
                   <p>画像ファイル:{{$post->image}}</p>
                 </div>
                @endif
