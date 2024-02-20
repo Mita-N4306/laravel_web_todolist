@@ -62,7 +62,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+       return view('comment.edit',['comment' => $comment]);
     }
 
     /**
@@ -70,7 +70,20 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+      $inputs = request()->validate([
+       'body' => 'required|max:2000',
+       'image' => 'image|max:2000',
+      ]);
+      $comment->update(['body' => $request->input('body')]);
+      if($request->hasFile('image')) {
+        $original = $request->file('image')->getClientOriginalName();
+        $name = date('Ymd_His').'_'.$original;
+        $path = 'public/images/'.$name;
+        request()->file('image')->move(public_path('storage/images/'),$name);
+        $comment->image = $name;
+      }
+      $comment->save();
+      return redirect()->route('post.show',$comment->post_id)->with('message','コメントを更新しました');
     }
 
     /**
@@ -78,6 +91,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+      $comment->delete();
+      return redirect()->back()->with('message','コメントを削除しました');
     }
 }
