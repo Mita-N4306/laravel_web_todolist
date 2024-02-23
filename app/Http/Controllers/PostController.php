@@ -13,8 +13,8 @@ class PostController extends Controller
     public function index()
     {
       $posts = Post::with('user','comments')->orderBy('created_at','desc')->paginate(5);
-      $user = auth()->user;
-      return view('welcome',['posts' => $posts,]);
+      $user = auth()->user();
+      return view('welcome',['posts' => $posts,'user' => $user,]);
     }
 
     /**
@@ -47,7 +47,7 @@ class PostController extends Controller
         $post->image = $name;
       }
       $post->save();
-      return redirect()->route('top',$post)->with('message','投稿を送信しました');
+      return redirect()->route('post.show',$post)->with('message','投稿を送信しました');
     }
 
 
@@ -101,6 +101,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
       $post->delete();
-      return redirect()->route('top')->with('message','投稿を削除しました');
+      $post->comments()->delete();
+      return redirect()->route('post.index')->with('message','投稿を削除しました');
     }
 }
