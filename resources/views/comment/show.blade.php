@@ -11,12 +11,11 @@
         <p>{{$comment->user->name}}さん・{{$comment->created_at->diffForHumans()}}</p>
      </div>
     @if(Auth::id() === $comment->user_id)
+     <div class="button-comprehensive">
       <a href="{{route('comment.edit',$comment)}}">
-        <div class="button-comprehensive">
           <div class="edit-button-container">
             <button type="button" class="btn btn-success">コメントの編集</button>
           </div>
-        </div>
       </a>
       <form action="{{route('comment.destroy',$comment->id)}}" method="post">
         @csrf
@@ -25,6 +24,7 @@
            <button type="submit" class="btn btn-danger" onClick="return-confirm('本当に削除しますか？');">コメントを削除する</button>
          </div>
       </form>
+    </div>
     @endif
  </div>
 @endforeach
