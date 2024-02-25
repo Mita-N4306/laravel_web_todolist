@@ -37,6 +37,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//自分の投稿のみ表示
+Route::get('post/mypost',[PostController::class,'mypost'])->name('post.mypost');
+
 Route::get('/',[PostController::class,'index'])->name('post.index'); //投稿一覧ページ
 Route::get('post/create',[PostController::class,'create'])->name('post.create'); //新規投稿表示
 Route::post('post',[PostController::class,'store'])->name('post.store'); //新規投稿実行

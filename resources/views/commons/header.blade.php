@@ -7,7 +7,7 @@
        @if(Auth::check())
         <ul>
             <li><a href="{{route('logout')}}">ログアウト</a></li>
-            <li><a href="#">あなたの投稿一覧</a></li>
+            <li><a href="{{route('post.mypost')}}">あなたの投稿一覧</a></li>
             <li><a href="#">あなたの返信コメント</a></li>
             <li><a href="#">お問い合わせ</a></li>
         </ul>
