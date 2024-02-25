@@ -38,6 +38,11 @@
        </div>
      @endforeach
     @endif
-     @include('commons.return_back')
+    <div class="mycomment-link">
+       <a href="{{route('post.mycomment')}}">
+        あなたの返信コメントはこちら
+       </a>
+    </div>
+    @include('commons.return_back')
  @endsection
 

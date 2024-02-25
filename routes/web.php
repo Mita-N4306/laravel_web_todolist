@@ -39,6 +39,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //自分の投稿のみ表示
 Route::get('post/mypost',[PostController::class,'mypost'])->name('post.mypost');
+//自分の返信コメントのみ表示
+Route::get('post/mycomment',[PostController::class,'mycomment'])->name('post.mycomment');
 
 Route::get('/',[PostController::class,'index'])->name('post.index'); //投稿一覧ページ
 Route::get('post/create',[PostController::class,'create'])->name('post.create'); //新規投稿表示

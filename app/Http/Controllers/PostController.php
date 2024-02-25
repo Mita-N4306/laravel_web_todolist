@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 class PostController extends Controller
 {
@@ -109,5 +110,11 @@ class PostController extends Controller
       $user = auth()->user()->id;
       $posts = Post::where('user_id',$user)->orderBy('created_at','desc')->get();
       return view('post.mypost',['posts' => $posts]);
+    }
+
+    public function mycomment() {
+      $user = auth()->user()->id;
+      $comments = Comment::where('user_id',$user)->orderBy('created_at','desc')->get();
+      return view('post.mycomment',['comments' => $comments]);
     }
 }
