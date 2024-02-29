@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 /*
@@ -61,4 +62,7 @@ Route::delete('comment/{comment}',[CommentController::class,'destroy'])->name('c
 Route::get('login',[LoginController::class,'showLoginForm'])->name('login'); //ログイン画面表示
 Route::post('login',[LoginController::class,'login'])->name('login.post'); //ログイン実行
 Route::get('logout',[LoginController::class,'logout'])->name('logout'); //ログアウト実行
+//お問い合わせ機能
+Route::get('contact/create',[ContactController::class,'create'])->name('contact.create'); //お問い合わせ表示
+Route::post('contact/store',[ContactController::class,'store'])->name('contact.store'); //お問い合わせ保存
 
