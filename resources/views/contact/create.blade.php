@@ -8,23 +8,23 @@
         <p>↓↓各フォームを入力後送信ボタンを押してください↓↓</p>
       </div>
         @include('commons.success_message')
-        <form action="{{route('contact.store')}}" method="post">
+        <form action="{{route('contact.store')}}" method="post" >
         @csrf
         <div class="form-group">
             <label for="title">件名</label>
             <input type="text" name="title" id="title" value="{{old('title')}}" required placeholder="件名を入力">
-        </div>  
+        </div>
         <div class="form-group">
             <label for="email">メールアドレス</label>
             <input type="text" name="email" id="email" value="{{old('email')}}" required placeholder="メールアドレスを入力">
-        </div>  
+        </div>
         <div class="form-group">
             <label for="body">本文</label>
             <textarea name="body" id="body" cols="30" rows="10" required placeholder="本文を入力">{{old('body')}}</textarea>
         </div>
         <div class="button-container">
             <button type="submit" class="btn btn-primary">送信する</button>
-        </div> 
+        </div>
         </form>
    </div>
    @include('commons.return_back')
