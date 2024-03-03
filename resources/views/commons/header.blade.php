@@ -9,6 +9,7 @@
             <li><a href="{{route('logout')}}">ログアウト</a></li>
             <li><a href="{{route('post.mypost')}}">あなたの投稿一覧</a></li>
             <li><a href="{{route('post.mycomment')}}">あなたの返信コメント</a></li>
+            <li><a href="{{route('profile.index')}}">ユーザー一覧(管理者専用)</a></li>
         </ul>
        @else
         <ul>

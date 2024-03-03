@@ -8,12 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
+    public function index() {
+       $users = User::all(); //ユーザー情報をすべて$usersに代入
+       return view('profile.index',['users' => $users]); //ユーザー情報($user)をviewに受け渡す
+    }
     public function edit(Request $request): View
     {
         return view('profile.edit', [
