@@ -16,24 +16,25 @@
       <div class="name-display-container">
        <p> {{ $post->user->name }}さん • {{$post->created_at->diffForHumans()}}</p>
       </div>
-     @if(Auth::id() === $post->user_id)
         <div class="button-comprehensive">
-         <a href="{{ route('post.edit',$post) }}">
-          <div class="edit-button-container">
-           <button type="button" class="btn btn-success">編集</button>
-          </div>
-         </a>
-     @endif
-     @if(Auth::id() === $post->user_id)
-        <form action="{{ route('post.destroy',$post) }}" method="post">
-         @csrf
-         @method('delete')
-         <div class="edit-button-container">
-          <button type="submit" class="btn btn-danger" onClick="return confirm('本当に削除しますか？');" >削除</button>
-         </div>
-        </form>
+          {{-- ログイン本人以外または管理者は表示されない --}}
+          @can('update',$post)
+           <a href="{{ route('post.edit',$post) }}">
+            <div class="edit-button-container">
+             <button type="button" class="btn btn-success">編集</button>
+            </div>
+           </a>
+          @endcan
+          @can('delete',$post)
+           <form action="{{ route('post.destroy',$post) }}" method="post">
+            @csrf
+            @method('delete')
+             <div class="edit-button-container">
+              <button type="submit" class="btn btn-danger" onClick="return confirm('本当に削除しますか？');" >削除</button>
+             </div>
+           </form>
+          @endcan
         </div>
-     @endif
-    </div>
+  </div>
 @include('comment.show')
 @endsection
