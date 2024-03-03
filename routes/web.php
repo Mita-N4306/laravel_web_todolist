@@ -22,12 +22,15 @@ Route::get('/', function () {
     return view('welcome');
 })->name('top');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth','can:admin'])->group(function(){
+    Route::get('/profile/index', [ProfileController::class, 'index'])->name('profile.index');
+});
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile/index', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -64,6 +67,6 @@ Route::get('login',[LoginController::class,'showLoginForm'])->name('login'); //�
 Route::post('login',[LoginController::class,'login'])->name('login.post'); //ログイン実行
 Route::get('logout',[LoginController::class,'logout'])->name('logout'); //ログアウト実行
 //お問い合わせ機能
-Route::get('contact/create',[ContactController::class,'create'])->name('contact.create'); //お問い合わせ表示
+Route::get('contact/create',[ContactController::class,'create'])->name('contact.create')->middleware('guest'); //お問い合わせ表示
 Route::post('contact/store',[ContactController::class,'store'])->name('contact.store'); //お問い合わせ保存
 
