@@ -184,3 +184,17 @@ display:inline-block;
 text-align:right;
 margin-right:12px;
 }
+.userlist-container{
+margin-bottom:16px;
+text-align:center;
+}
+.userlist-container h1{
+border-bottom:2px solid black;
+margin-bottom:16px;
+}
+.userlist-table-head{
+background-color:lightgreen;
+}
+.userlist-table-body{
+background-color:lightgray;
+}
