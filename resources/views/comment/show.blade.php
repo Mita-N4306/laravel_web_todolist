@@ -10,22 +10,24 @@
      <div>
         <p>{{$comment->user->name}}さん・{{$comment->created_at->diffForHumans()}}</p>
      </div>
-    @if(Auth::id() === $comment->user_id)
      <div class="button-comprehensive">
-      <a href="{{route('comment.edit',$comment)}}">
-          <div class="edit-button-container">
-            <button type="button" class="btn btn-success">コメントの編集</button>
-          </div>
-      </a>
-      <form action="{{route('comment.destroy',$comment->id)}}" method="post">
-        @csrf
-        @method('delete')
-         <div class="button-container">
-           <button type="submit" class="btn btn-danger" onClick="return-confirm('本当に削除しますか？');">コメントを削除する</button>
-         </div>
-      </form>
+      @can('update',$comment)
+        <a href="{{route('comment.edit',$comment)}}">
+            <div class="edit-button-container">
+                <button type="button" class="btn btn-success">コメントの編集</button>
+            </div>
+        </a>
+      @endcan
+      @can('delete',$comment)
+        <form action="{{route('comment.destroy',$comment->id)}}" method="post">
+            @csrf
+            @method('delete')
+            <div class="button-container">
+            <button type="submit" class="btn btn-danger" onClick="return-confirm('本当に削除しますか？');">コメントを削除する</button>
+            </div>
+        </form>
+      @endcan
     </div>
-    @endif
  </div>
 @endforeach
 {{-- コメントの機能追加 --}}
