@@ -62,6 +62,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
+       $this->authorize('update',$comment);
        return view('comment.edit',['comment' => $comment]);
     }
 
@@ -70,6 +71,7 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
+      $this->authorize('update',$comment);
       $inputs = request()->validate([
        'body' => 'required|max:2000',
        'image' => 'image|max:2000',
@@ -91,6 +93,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
+      $this->authorize('delete',$comment);
       $comment->delete();
       return redirect()->back()->with('message','コメントを削除しました');
     }
